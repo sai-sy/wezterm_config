@@ -29,16 +29,18 @@ config.font_size = 11
 config.launch_menu = launch_menu
 -- makes my cursor blink 
 config.default_cursor_style = 'BlinkingBar'
-config.disable_default_key_bindings = true
+-- config.disable_default_key_bindings = true
 -- this adds the ability to use ctrl+v to paste the system clipboard 
 config.keys = {
   { 
     key = 'v', 
     mods = 'CTRL', 
     action = act.PasteFrom 'Clipboard' 
-  },  
-{ key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
-{ key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
+  },
+  { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
+  { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
+  { key = 'Tab', mods = 'CTRL', action = act.ActivateTabRelative(1) },
+  { key = 'Tab', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(-1) },
 }
 config.mouse_bindings = mouse_bindings
 
@@ -101,8 +103,14 @@ config.foreground_text_hsb = {
 
 
 -- IMPORTANT: Sets WSL2 UBUNTU-22.04 as the defualt when opening Wezterm
-config.default_domain = 'WSL:Ubuntu'
+local wsl_domains = wezterm.default_wsl_domains()
 
+for _, dom in ipairs(wsl_domains) do
+    dom.default_cwd = "/home/sai"
+end
+config.default_domain = 'WSL:Ubuntu'
+config.default_cwd = "/home/sai"
+config.wsl_domains = wsl_domains
 config.window_decorations = "RESIZE"
 
 return config
