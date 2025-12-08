@@ -41,7 +41,7 @@ config.keys = {
 	{ key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
 	{ key = "Tab", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(-1) },
-	{ key = "t", mods = "CTRL|SHIFT", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "t", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
 }
 
 -- There are mouse binding to mimc Windows Terminal and let you copy
