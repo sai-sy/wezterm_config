@@ -42,6 +42,19 @@ config.keys = {
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
 	{ key = "Tab", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(-1) },
 	{ key = "t", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
+    {
+    key = 'LeftArrow',
+    mods = 'OPT',
+    action = act.SendKey {
+      key = 'b',
+      mods = 'ALT',
+    },
+  },
+  {
+    key = 'RightArrow',
+    mods = 'OPT',
+    action = act.SendKey { key = 'f', mods = 'ALT' },
+  },
 }
 
 -- There are mouse binding to mimc Windows Terminal and let you copy
@@ -103,14 +116,17 @@ config.foreground_text_hsb = {
 -- This is used to set an image as my background
 
 -- IMPORTANT: Sets WSL2 UBUNTU-22.04 as the defualt when opening Wezterm
-local wsl_domains = wezterm.default_wsl_domains()
-
-for _, dom in ipairs(wsl_domains) do
-	dom.default_cwd = "/home/sai"
-end
-config.default_domain = "WSL:Ubuntu"
-config.default_cwd = "/home/sai"
-config.wsl_domains = wsl_domains
+--local wsl_domains = wezterm.default_wsl_domains()
+--
+--for _, dom in ipairs(wsl_domains) do
+--	dom.default_cwd = "/home/sai"
+--end
+--config.default_domain = "WSL:Ubuntu"
+--config.default_cwd = "/home/sai"
+--config.wsl_domains = wsl_domains
 config.window_decorations = "RESIZE"
+
+   -- similarly, don't ask the macOS IME/text services to compose input
+   config.use_ime = false
 
 return config
